@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mark Attendance with Camera</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>📸 Mark Attendance with Camera</h2>
+
+    <!-- Open Camera Button -->
+    <button onclick="startCamera()">📷 Open Camera</button>
+
+    <!-- Camera Video Element (Initially Hidden) -->
+    <div id="cameraSection" style="display:none;">
+      <video id="video" autoplay playsinline></video>
+      <br>
+      <button onclick="capture()">📸 Capture Photo</button>
+      <form id="cameraForm" method="POST" action="/process-attendance">
+        <input type="hidden" name="imageData" id="imageData">
+        <br>
+        <input type="submit" value="Mark Attendance from Camera">
+      </form>
+    </div>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <hr>
+
+    <a href="/dashboard">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    let stream;
+
+    function startCamera() {
+      const video = document.getElementById('video');
+      document.getElementById('cameraSection').style.display = 'block';
+
+      navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { exact: "environment" } },
+        audio: false
+      }).then(s => {
+        stream = s;
+        video.srcObject = stream;
+      }).catch(err => {
+        console.warn("Using front camera due to error:", err);
+        navigator.mediaDevices.getUserMedia({ video: true }).then(s => {
+          stream = s;
+          video.srcObject = stream;
+        });
+      });
+    }
+
+    function capture() {
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+      const imageData = canvas.toDataURL('image/jpeg');
+      document.getElementById('imageData').value = imageData;
+
+      // Stop the camera stream
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        document.getElementById('cameraSection').style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

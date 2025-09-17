@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attendance Records</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background-color: white;
+      color: black;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #2196f3;
+      color: white;
+    }
+    .status-present {
+      color: green;
+      font-weight: bold;
+    }
+    .status-absent {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Attendance Records</h2>
+    <table>
+      <tr>
+        <th>Roll</th>
+        <th>Name</th>
+        <th>Class</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Teacher</th>
+        <th>Status</th>
+      </tr>
+      {% for row in records %}
+      <tr>
+        <td>{{ row.roll }}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.class }}</td>
+        <td>{{ row.date }}</td>
+        <td>{{ row.time }}</td>
+        <td>{{ row.teacher }}</td>
+        <td class="status-{{ row.status|lower }}">{{ row.status }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="/dashboard">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+/* ===== Global Body & Background ===== */
+body {
+  background: url('NIT LOGO.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Container (for login/dashboard box) ===== */
+.container {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  max-width: 500px;
+  margin: 100px auto;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* ===== Form Inputs ===== */
+form input[type="text"],
+form input[type="password"],
+form input[type="file"],
+form input[type="submit"] {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+}
+
+form input[type="submit"] {
+  background: #00bcd4;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+form input[type="submit"]:hover {
+  background: #2196f3;
+}
+
+/* ===== Links ===== */
+a {
+  color: #00bcd4;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Dashboard Buttons (Welcome Page) ===== */
+.welcome-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.welcome-buttons a {
+  display: inline-block;
+  width: 220px;
+  padding: 14px;
+  margin: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  background: #00bcd4;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.welcome-buttons a:hover {
+  background: #2196f3;
+}
